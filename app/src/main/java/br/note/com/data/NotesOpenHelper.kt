@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class NotesOpenHelper(context: Context) : SQLiteOpenHelper(context, "notes.db", null, 1) {
+class NotesOpenHelper(context: Context) : SQLiteOpenHelper(context, "notes.db", null, 2) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(NotesContract.SQL_CREATE_ENTRIES)
