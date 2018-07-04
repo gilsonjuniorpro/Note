@@ -3,9 +3,11 @@ package br.note.com.adapter
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import br.note.com.R
 import br.note.com.data.DataStore
 import br.note.com.pojo.Note
@@ -41,6 +43,8 @@ class NotesAdapter(private val context: Context) : RecyclerView.Adapter<NotesAda
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         val note = notes[position]
         holder.text.text = note.text
+        holder.btDelete.setOnClickListener({showDialog(note)})
+        holder.btEdit.setOnClickListener({toast("Edit Button was clicked")})
     }
 
     fun refresh() {
@@ -58,5 +62,43 @@ class NotesAdapter(private val context: Context) : RecyclerView.Adapter<NotesAda
 
     class NotesViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val text = itemView.text
+        val btDelete = itemView.btDelete
+        val btEdit = itemView.btEdit
+    }
+
+
+    private fun delete(note: Note) {
+        DataStore.execute {
+            DataStore.notes.delete(note)
+        }
+
+        refresh()
+    }
+
+
+    private fun showDialog(note: Note) {
+        var dialog: AlertDialog
+
+        val builder = AlertDialog.Builder(context)
+
+        builder.setTitle("Do you really want to delete this note?")
+
+        builder.setPositiveButton("Yes") { _, _ ->
+            toast("Note deleted")
+            delete(note)
+        }
+
+        builder.setNegativeButton("No") { _, _ ->
+            toast("Operation canceled")
+        }
+
+        dialog = builder.create()
+
+        dialog.show()
+    }
+
+
+    fun toast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -12,8 +12,6 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/margin_small"
-        android:clickable="true"
         android:background="?selectableItemBackground"
         android:orientation="vertical"
         android:minHeight="@dimen/card_min_height">
@@ -24,7 +22,46 @@
             android:layout_height="wrap_content"
             android:textAppearance="?textAppearanceListItemSecondary"
             android:alpha="0.7"
-            tools:text="Lorem Ipsum et al."/>
+            android:layout_margin="8dp"
+            android:padding="4dp"
+            tools:text="Lorem Ipsum et al."
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small"
+            android:background="@color/colorGreenLight"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btEdit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_create_black_24dp"
+                android:tint="@color/colorIcon"
+                android:alpha="0.8"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:clickable="true"
+                />
+
+            <ImageView
+                android:id="@+id/btDelete"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_delete_black_24dp"
+                android:tint="@color/colorIcon"
+                android:alpha="0.8"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:padding="2dp"
+                android:clickable="true"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 
